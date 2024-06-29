@@ -23,3 +23,47 @@ apiStatus = "pending"
 // This will return an error because it is not part of the literals in the variable interface
 // apiStatus= "processing"
 console.log(apiStatus)
+
+// TYPE ANY
+let anyData: any = 65
+anyData = "Welcome back!"
+anyData = true
+console.log(anyData)
+
+// The random variable is not declared so it is set to default as any.
+let random;
+console.log(typeof random);
+
+// Union type with undefined
+let books = ['The Art of War', 'Law of Business Success', 'Think Big']
+let foundBook: string | undefined;
+
+for (let book of books) {
+    if (book === "The Art of War") {
+        foundBook = book.toLocaleUpperCase();
+        break
+    }
+}
+
+console.log(foundBook);
+
+// Array type definition
+// After declaration ts is not accepting any type of data in the array apart from the type allocated to it.
+let productPrices: number[] = [100, 50, 30, 400]
+// For a type number the below code won't work will return an error:
+// productPrices.push('Hello world ')
+console.log(productPrices);
+
+let productname: string[] = ['dell', 'hp', 'lenovo', 'apple']
+console.log(productname);
+
+// This is an empty array type definition different from type any
+let randArr: [] = []
+console.log(randArr);
+
+// Union type in array
+let userData = ['kelvin', 61]
+console.log(userData);
+// or
+let userInfo: (string | number | boolean)[] = ['kelvin', 61, true]
+console.log(userInfo);
