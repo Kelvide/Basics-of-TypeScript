@@ -67,3 +67,22 @@ console.log(userData);
 // or
 let userInfo: (string | number | boolean)[] = ['kelvin', 61, true]
 console.log(userInfo);
+
+
+// OBJECT Type Definition
+
+// Basic object type definition
+let car: { brand: string, year: number } = { brand: "Rolls Royce", year: 2024 };
+car.brand = "BMW"
+
+let car1cost = { brand: 'Rolls Royce', cost: 660000 }
+let car2cost = { brand: 'BMW', cost: 65895 }
+let car3cost = { brand: 'Benz' }
+
+// Store the car cost variable in the cars 
+// The code below has an error because the type defined for the array "cost" is not present in the object "car3cost". To fix this, check the next line we used the type optional property.
+// let allCars: { brand: string, cost: number }[] = [car1cost, car2cost, car3cost]
+let allCars: { brand: string, cost?: number }[] = [car1cost, car2cost, car3cost]
+
+
+let readOnlyCars: { readonly brand: string, cost?: number }[] = [car1cost, car2cost, car3cost]
