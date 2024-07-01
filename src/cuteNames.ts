@@ -27,7 +27,7 @@ const showModal = (message: string) => {
     const modalText = document.querySelector<HTMLParagraphElement>('#modal-text');
     if (modal && modalText) {
         modalText.textContent = message;
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
     }
 };
 
