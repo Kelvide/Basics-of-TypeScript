@@ -34,7 +34,12 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  margin-bottom: 10px;
+}
+
+#title {
+  font-size: 2em;
+  line-height: 1.1;
+  text-align: center;
 }
 
 #app,
@@ -60,7 +65,8 @@ h1 {
   filter: drop-shadow(0 0 2em #3178c6aa);
 }
 
-.card {
+.card,
+.form {
   padding: 2em;
 }
 
@@ -98,6 +104,17 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+@media (max-width: 460px) {
+  .form {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+
 
 /* @media (prefers-color-scheme: light) {
   :root {

@@ -2,8 +2,8 @@ import './style.css';
 
 document.querySelector<HTMLDivElement>('#cute')!.innerHTML = `
   <div>
-    <h1>Cute Names😊</h1>
-    <div class="card">
+    <h1 id="title">Cute Names😊</h1>
+    <div class="form">
         <input id="input_name" placeholder="Input your name"/>
         <button id="submit" type="button">Submit</button>
     </div>
