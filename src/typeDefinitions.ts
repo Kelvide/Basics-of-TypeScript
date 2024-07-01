@@ -119,3 +119,33 @@ function convertNGNToUSD(amount: number): number {
     return amount * 1550
 }
 convertNGNToUSD(300)
+
+// Function to if a name is in the array or not
+// Function to if a name is cute or not :)
+let cuteNames: string[] = ["Kelvin", "Kyle"]
+
+function isNameInList(name: string): boolean {
+    return cuteNames.includes(name)
+}
+
+let nameToCheck = "Olivia"
+
+if (isNameInList(nameToCheck)) {
+    console.log(`${nameToCheck} is a cute name`);
+} else {
+    console.log(`${nameToCheck} is not a cute name`);
+}
+
+// Function to recieve a message and the sum of some numbers
+function sumNums(message: string, ...numbers: number[]) {
+    let doubleNums = numbers.map((num) => num * 2)
+    console.log("Doubled the number in the array", doubleNums)
+
+    let total = numbers.reduce((previous, current) => {
+        return previous + current;
+    }, 0)
+    return `${message}${total}`
+}
+
+let result = sumNums("The total is : ", 2, 4, 6, 68, 4, 5)
+console.log(result);
