@@ -110,7 +110,12 @@ console.log("Insersion Type", worker);
 
 // FUNCTION TYPE DEFINITION
 function sayHi(name: string) {
-    console.log(`Hey there ${name.toLocaleUpperCase()}`);
+    console.log("String func", `Hey there ${name.toLocaleUpperCase()}`);
 }
-
 sayHi("Kelvin")
+
+// The function return type 
+function convertNGNToUSD(amount: number): number {
+    return amount * 1550
+}
+convertNGNToUSD(300)
