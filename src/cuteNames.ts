@@ -38,11 +38,11 @@ const setupSubmit = (button: HTMLButtonElement | null) => {
             if (inputElement) {
                 const name = inputElement.value.toLocaleLowerCase();
                 if (name === "") {
-                    showModal("Please enter a name man 🤬.");
+                    showModal("Input a name 🤬");
                 } else if (checkName(name)) {
                     showModal(`${name.toUpperCase()} is not a cute name 😂`);
                 } else {
-                    showModal(`${name.toUpperCase()} is a cute name 😳`);
+                    showModal(`${name.toUpperCase()} is a cute name 😊`);
                 }
             }
         });

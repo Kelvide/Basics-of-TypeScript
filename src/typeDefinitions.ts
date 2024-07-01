@@ -136,8 +136,8 @@ if (isNameInList(nameToCheck)) {
     console.log(`${nameToCheck} is not a cute name`);
 }
 
-// Function to recieve a message and the sum of some numbers
-function sumNums(message: string, ...numbers: number[]) {
+// Function to receive a message and the sum of some numbers
+function sumNums(message: string, ...numbers: number[]): string {
     let doubleNums = numbers.map((num) => num * 2)
     console.log("Doubled the number in the array", doubleNums)
 
