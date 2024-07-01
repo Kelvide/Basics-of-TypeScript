@@ -83,6 +83,24 @@ let car3cost = { brand: 'Benz' }
 // The code below has an error because the type defined for the array "cost" is not present in the object "car3cost". To fix this, check the next line we used the type optional property.
 // let allCars: { brand: string, cost: number }[] = [car1cost, car2cost, car3cost]
 let allCars: { brand: string, cost?: number }[] = [car1cost, car2cost, car3cost]
+console.log(allCars);
 
-
+// The readonly modifier in the inline code comment for the readOnlyCars array means that the brand property of each object in the array cannot be changed once it is set.
 let readOnlyCars: { readonly brand: string, cost?: number }[] = [car1cost, car2cost, car3cost]
+console.log(readOnlyCars);
+
+// Insersion Type
+// Combine multiple types into one.
+interface Person {
+    name: string;
+}
+
+interface Employee {
+    employeeId: number;
+}
+
+type Worker = Person & Employee;
+
+let worker: Worker = { name: "John", employeeId: 1234 };
+
+console.log(worker);
