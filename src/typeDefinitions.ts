@@ -149,3 +149,27 @@ function sumNums(message: string, ...numbers: number[]): string {
 
 let result = sumNums("The total is : ", 2, 4, 6, 68, 4, 5)
 console.log(result);
+
+// Function to log messages
+// type void indecate there is going to be an absence of return value
+function logMessage(message: string): void {
+    console.log(message)
+}
+
+logMessage("Hello, World");
+
+// Function to process datas
+// Function to check if a data is a string and if config reverse is added to reverse the data
+function processData(input: string | number, config: { reverse: boolean } = { reverse: false }): string | number {
+    if (typeof input === "number") {
+        return input * input
+    } else if (typeof input === "string") {
+        return config.reverse ? input.toUpperCase().split('').reverse().join('') : input.toUpperCase()
+    } else {
+        return input
+    }
+}
+
+console.log(processData(10));
+console.log(processData("Hello World"));
+console.log(processData("Hello World", { reverse: true }));
