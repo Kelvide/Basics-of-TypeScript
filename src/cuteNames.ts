@@ -40,9 +40,9 @@ const setupSubmit = (button: HTMLButtonElement | null) => {
                 if (name === "") {
                     showModal("Input a name 🤬");
                 } else if (checkName(name)) {
-                    showModal(`${name.toUpperCase()} is not a cute name 😂`);
+                    showModal(`${name.toUpperCase()} is not a cute name 😂😂😂😂😂`);
                 } else {
-                    showModal(`${name.toUpperCase()} is a cute name 😊`);
+                    showModal(`${name.toUpperCase()} is a cute name 😊😊😊`);
                 }
             }
         });
