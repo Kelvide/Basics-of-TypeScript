@@ -53,8 +53,8 @@ printStaffDetails(steve)
 printStaffDetails(Kelvin)
 
 
-// Interface
-// Interface and Alias do the same work adding methods to interface
+// INTERFACE provides shape of an object
+// Interface and Alias do almost the same work
 interface Book {
   readonly isbn: number;
   title: string;
@@ -240,3 +240,17 @@ function isForSale(obj: Car | Owner | Seller): obj is Seller {
 if (isForSale(randomCarData)) {
   randomCarData.sellingCar()
 }
+
+
+
+// DIFFERENCES BETWEEN INTERFACE AND ALIAS
+
+// Merging: Interfaces can be merged; type aliases cannot.
+// Complex Types: Type aliases can define complex types (unions, intersections, tuples, etc.) more easily than interfaces.
+// Extension: Both can extend other types, but interfaces do so with extends, and type aliases often use intersections.
+// Classes: Interfaces are typically preferred for defining the shape of objects, especially when used with classes.
+
+
+// Interfaces: Use interfaces when you need to define the shape of an object, especially if you need to merge interfaces or extend them in a straightforward manner.
+
+// Type Aliases: Use type aliases for more complex type definitions, including unions, intersections, and when defining types for primitives, tuples, or function signatures.
