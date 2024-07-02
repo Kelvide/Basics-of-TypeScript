@@ -102,4 +102,28 @@ const laptop: Computer = {
 
 laptop.storage = 512;
 laptop.upgradeRam(16);
-console.log(laptop);
+console.log("Using Interface: ", laptop);
+
+
+// Creating a replica of the above function using Alias
+type AliasComputer = {
+  readonly id: number,
+  brand: string,
+  ram: number,
+  storage: number,
+  upgradeRam(increase: number): number
+}
+
+const aliasLaptop: AliasComputer = {
+  id: 1,
+  brand: "Asus",
+  ram: 32,
+  storage: 256,
+  upgradeRam(amount) {
+    return this.ram += amount;
+  },
+}
+
+aliasLaptop.storage = 1024;
+aliasLaptop.upgradeRam(32);
+console.log("Using Alias: ", aliasLaptop);
