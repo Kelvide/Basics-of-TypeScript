@@ -21,3 +21,64 @@ console.log(tuple);
 // Set optional parameter in a tuple
 let student: readonly [string, number?] = ['Kelvin']
 console.log(student);
+
+// Add multiple data to the tuple 
+let tupleData: readonly [string, number, ...boolean[]] = ["Hello", 1, true, false, true]
+console.log(tupleData)
+
+
+// ENUM
+// Enums in TypeScript are a way to define a set of named constants, which can make your code more readable and maintainable. They can be numeric or string-based
+enum ServerResponseStatus {
+  success = "success",
+  error = 500,
+}
+// If you have number values with enums you get a reverse mapping but you dont have reverse mapping for type string
+console.log(ServerResponseStatus)
+// To perform an action specifically for the number values in the enum, we can iterate over all the values in the enum.
+Object.values(ServerResponseStatus).forEach((value) => {
+  if (typeof value === "number") {
+    console.log(value)
+  }
+});
+
+type ServerResponse = {
+  data: string[],
+  status: ServerResponseStatus,
+}
+
+function getServerResponse(): ServerResponse {
+  return {
+    data: ["First Response", "Second Response", "Third Response"],
+    status: ServerResponseStatus.success
+  }
+}
+
+console.log(getServerResponse());
+
+// 
+enum UserRoles {
+  admin,
+  user,
+  vendor
+}
+
+type User = {
+  id: number,
+  name: string,
+  role: UserRoles,
+  contacts: [string, string]
+}
+
+const createUser = (user: User): User => {
+  return user;
+}
+
+const user: User = {
+  id: 1,
+  name: "Kelvin",
+  role: UserRoles.admin,
+  contacts: ["kelv@mail.com", "12345"]
+}
+
+console.log(createUser(user))
