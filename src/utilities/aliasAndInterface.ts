@@ -128,7 +128,7 @@ aliasLaptop.storage = 1024;
 aliasLaptop.upgradeRam(32);
 console.log("Using Alias: ", aliasLaptop);
 
-// Using type guard for intertface
+// EXTENDS in TS
 interface Person {
   name: string;
   age: number;
@@ -186,3 +186,57 @@ const manager: Manager1 = {
 console.log("Manager Data", manager.getDetails())
 console.log(manager.getDogDetails())
 manager.managePeople()
+
+
+// TYPE GUARD
+function getCarData(): Car | Owner | Seller {
+  const rand = Math.random()
+  if (rand < 0.35) {
+    return {
+      name: "Rolls Royce Ghost",
+      brand: "Rolls Royce",
+      year: 2024
+    }
+  } else if (rand < 0.7) {
+    return {
+      name: "Rolls Royce Ghost",
+      brand: "Rolls Royce",
+      year: 2024,
+      ownerName: "Kelvin"
+    }
+  } else {
+    return {
+      name: "Rolls Royce Ghost",
+      brand: "Rolls Royce",
+      year: 2024,
+      sellingCar() {
+        console.log(`${this.name} ${this.year} For Sale`);
+      }
+    }
+  }
+}
+
+interface Car {
+  name: string;
+  brand: string;
+  year: number;
+}
+
+interface Owner extends Car {
+  ownerName: string;
+}
+
+interface Seller extends Car {
+  sellingCar(): void;
+}
+
+const randomCarData: Car | Owner | Seller = getCarData();
+
+// obj is Seller is confirming that the value that will return true is going to be having the interface Seller.
+function isForSale(obj: Car | Owner | Seller): obj is Seller {
+  return 'sellingCar' in obj
+}
+
+if (isForSale(randomCarData)) {
+  randomCarData.sellingCar()
+}
