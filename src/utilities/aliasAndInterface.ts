@@ -127,3 +127,62 @@ const aliasLaptop: AliasComputer = {
 aliasLaptop.storage = 1024;
 aliasLaptop.upgradeRam(32);
 console.log("Using Alias: ", aliasLaptop);
+
+// Using type guard for intertface
+interface Person {
+  name: string;
+  age: number;
+  getDetails(): string;
+}
+
+// The 'extends' keyword allows EmployeeData to inherit all properties from the Person interface and adds a new property 'employeeId' to the EmployeeData interface.
+interface EmployeeData extends Person {
+  employeeId: number
+}
+
+interface DogOwner {
+  dogName: string;
+  getDogDetails(): string;
+}
+
+interface Manager1 extends Person, DogOwner {
+  managePeople(): void
+}
+
+const person: Person = {
+  name: "Doe",
+  age: 30,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`
+  }
+}
+console.log("Person Data", person.getDetails())
+
+const employee1: EmployeeData = {
+  name: "Kyle",
+  age: 23,
+  employeeId: 10,
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}, EmployeeId: ${this.employeeId}`
+  }
+}
+console.log("Employee Data", employee1.getDetails())
+
+const manager: Manager1 = {
+  name: "bob",
+  age: 35,
+  dogName: "rex",
+  getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`
+  },
+  getDogDetails() {
+    return `Dog Name: ${this.dogName}`
+  },
+  managePeople() {
+    console.log("Managing people");
+  }
+}
+
+console.log("Manager Data", manager.getDetails())
+console.log(manager.getDogDetails())
+manager.managePeople()
