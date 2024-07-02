@@ -19,14 +19,14 @@ console.log(greeting);
 type User = { name: string, id: number, isActive: boolean }
 
 const Liv: User = {
-    id: 1,
-    name: 'Olivia',
-    isActive: true,
+  id: 1,
+  name: 'Olivia',
+  isActive: true,
 }
 
 function createUser(user: User): User {
-    console.log(`Hello, there ${user.name.toUpperCase()}!!!`)
-    return user;
+  console.log(`Hello, there ${user.name.toUpperCase()}!!!`)
+  return user;
 }
 
 createUser(Liv)
@@ -38,11 +38,11 @@ type Manager = { name: string, id: number, employees: Employee[] }
 type Staff = Employee | Manager
 
 function printStaffDetails(staff: Staff): void {
-    if ('employees' in staff) {
-        console.log(`${staff.name} is a manager for the ${staff.employees.length} employees`)
-    } else {
-        console.log(`${staff.name} is an employee in ${staff.dept} depertment`)
-    }
+  if ('employees' in staff) {
+    console.log(`${staff.name} is a manager for ${staff.employees.length} employees`)
+  } else {
+    console.log(`${staff.name} is an employee in ${staff.dept} depertment`)
+  }
 }
 
 const favour: Employee = { id: 1, name: "Favour", dept: "QA" }
@@ -51,3 +51,34 @@ const Kelvin: Manager = { id: 1, name: "Favour", employees: [favour, steve] }
 
 printStaffDetails(steve)
 printStaffDetails(Kelvin)
+
+
+// Interface
+// Interface and Alias do the same work adding methods to interface
+interface Book {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  // method
+  printAuthor(): void;
+  printTitle(messgae: string): string;
+}
+
+const artOfWar: Book = {
+  isbn: 1234,
+  title: 'Art of War',
+  author: 'Sun Tzu',
+  genre: 'Treatise',
+  printAuthor() {
+    console.log(this.author);
+  },
+  printTitle(message) {
+    return `${this.title} ${message}`
+  }
+}
+
+artOfWar.printAuthor();
+console.log(artOfWar.printTitle("is a good book!!!"));
+
+// Function to upgrade ram and add functions to my interface
