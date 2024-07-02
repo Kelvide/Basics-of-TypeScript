@@ -81,4 +81,25 @@ const artOfWar: Book = {
 artOfWar.printAuthor();
 console.log(artOfWar.printTitle("is a good book!!!"));
 
-// Function to upgrade ram and add functions to my interface
+// Function to upgrade ram and add methods to interface
+interface Computer {
+  readonly id: number;
+  brand: string;
+  ram: number;
+  upgradeRam: (increse: number) => number;
+  storage?: number;
+}
+
+const laptop: Computer = {
+  id: 1,
+  brand: "Dell",
+  ram: 16,
+  storage: 256,
+  upgradeRam(amount) {
+    return this.ram += amount;
+  },
+}
+
+laptop.storage = 512;
+laptop.upgradeRam(16);
+console.log(laptop);
