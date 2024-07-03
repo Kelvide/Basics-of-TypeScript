@@ -82,7 +82,7 @@ const user: User = {
 }
 console.log(createUser(user))
 
-// Type ASSERSIONS
+// Type ASSERTIONS
 
 // Safety: Type assertions are a way to override TypeScript's type inference.
 // It's important to use them carefully, as incorrect type assertions can lead to runtime errors.
@@ -109,6 +109,7 @@ console.log(bird.name);
 // This will return undefined because the type was not in dogObject so be careful for scenario like this
 console.log(dog.name);
 
+
 // Non-Casting: Type assertions are purely a compile-time construct and do not have any effect at runtime.
 // They do not perform any type conversion; they just tell the compiler to treat a value as a certain type.
 
@@ -130,3 +131,22 @@ person.name = "John";
 person.age = 30;
 
 console.log(person); // Output: { name: "John", age: 30 }
+
+
+// An example of where you can use type assertion
+enum Status {
+  Pending = "pennding",
+  Declined = "declined"
+}
+
+type DBUser = {
+  name: string,
+  status: string
+}
+
+// The status the DB is returning
+const statusValue = 'pending;'
+// The below example is returning an error because ts is not sure of the value in statusValue variable so we are sure that we are returning the right enum now we can go ahead and use assertion type to bypass this
+// const userFromDB:User = {name:"Kelvin", status:statusValue}
+const userFromDB: DBUser = { name: "Kelvin", status: statusValue as Status }
+console.log(userFromDB)
