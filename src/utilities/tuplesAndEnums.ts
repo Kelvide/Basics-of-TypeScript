@@ -56,7 +56,7 @@ function getServerResponse(): ServerResponse {
 
 console.log(getServerResponse());
 
-// 
+// Explicit example on ENUM
 enum UserRoles {
   admin,
   user,
@@ -80,5 +80,53 @@ const user: User = {
   role: UserRoles.admin,
   contacts: ["kelv@mail.com", "12345"]
 }
-
 console.log(createUser(user))
+
+// Type ASSERSIONS
+
+// Safety: Type assertions are a way to override TypeScript's type inference.
+// It's important to use them carefully, as incorrect type assertions can lead to runtime errors.
+
+let someValue: any = "this is a string";
+let strLength: number = (someValue as string).length;
+
+console.log(strLength); // Output: 16
+
+type Bird = {
+  name: string,
+}
+
+let birdString = '{"name":"Eagle"}';
+let dogString = '{"breed":"Poodle"}';
+
+let birdObject = JSON.parse(birdString)
+let dogObject = JSON.parse(dogString)
+
+let bird = birdObject as Bird;
+let dog = dogObject as Bird
+
+console.log(bird.name);
+// This will return undefined because the type was not in dogObject so be careful for scenario like this
+console.log(dog.name);
+
+// Non-Casting: Type assertions are purely a compile-time construct and do not have any effect at runtime.
+// They do not perform any type conversion; they just tell the compiler to treat a value as a certain type.
+
+let anotherValue: unknown = "another string";
+let anotherStrLength: number = (<string>anotherValue).length;
+
+console.log(anotherStrLength); // Output: 14
+
+// Compatibility: The 'as' syntax is generally preferred over angle-bracket syntax,
+// especially when working with JSX in React, as the angle brackets can be confused with HTML tags.
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+let person = {} as Person;
+person.name = "John";
+person.age = 30;
+
+console.log(person); // Output: { name: "John", age: 30 }
