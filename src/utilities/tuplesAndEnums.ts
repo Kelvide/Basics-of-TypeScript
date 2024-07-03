@@ -86,6 +86,7 @@ console.log(createUser(user))
 
 // Safety: Type assertions are a way to override TypeScript's type inference.
 // It's important to use them carefully, as incorrect type assertions can lead to runtime errors.
+// This is especially useful when you know more about the type of a variable than TypeScript does.
 
 let someValue: any = "this is a string";
 let strLength: number = (someValue as string).length;
@@ -150,3 +151,59 @@ const statusValue = 'pending;'
 // const userFromDB:User = {name:"Kelvin", status:statusValue}
 const userFromDB: DBUser = { name: "Kelvin", status: statusValue as Status }
 console.log(userFromDB)
+
+
+// Type UNKNOWN
+// Can accept any type of value but it is a type safe alternative to type any
+let unknownValue: unknown;
+unknownValue = "Hello world"
+unknownValue = [1, 3, 4]
+console.log(typeof unknownValue)
+
+// Type NEVER
+// You cant assign any value to type never
+// let someValue: never = 0;
+
+// Example of type never
+type Theme = 'light' | 'dark'
+
+
+// The parameter theme is of type Theme, meaning it can only be 'light' or 'dark'.
+function checkTheme(theme: Theme) {
+  if (theme === 'light') {
+    console.log('light theme');
+    return;
+  } else if (theme === 'dark') {
+    console.log('dark theme');
+    return;
+  }
+  theme; // This line is unreachable and 'theme' is of type never, 
+  // theme is of type never, because it can never have a value that is not 'light' or 'dark'.
+}
+
+checkTheme('dark')
+
+
+enum Color {
+  Red,
+  Blue,
+  // Green,
+}
+
+function getColorName(color: Color) {
+  switch (color) {
+    case Color.Red:
+      return 'Red';
+    case Color.Blue:
+      return 'Blue';
+    default:
+      // at build time error is been handled
+      let unexpectedColor: never = color;
+      // at runtime throw new error
+      throw new Error(`Unexpected color value: ${unexpectedColor}`);
+  }
+}
+
+console.log(getColorName(Color.Red)); // Red
+console.log(getColorName(Color.Blue)); // Blue
+// console.log(getColorName(Color.Green)); // Green
