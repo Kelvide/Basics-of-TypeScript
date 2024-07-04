@@ -133,3 +133,121 @@ const year = checkInput(new Date());
 const randomData = checkInput('2020-05-05');
 console.log(year);
 console.log(randomData);
+
+
+
+// Type Predicate
+// A type predicate is a technique in TypeScript that allows you to define a custom type guard function.
+// Type predicates use the 'is' keyword to assert the type of a variable within a specific block.
+// This is useful for creating reusable type-checking functions that can help TypeScript narrow down the type of a variable.
+
+// EXAMPLE 1
+type Fish = { swim: () => void }
+
+type Bird = { fly: () => void; }
+
+function isFish(pet: Fish | Bird): pet is Fish {
+    return (pet as Fish).swim !== undefined;
+}
+
+function getPetAction(pet: Fish | Bird) {
+    if (isFish(pet)) {
+        // Here, TypeScript knows 'pet' is of type 'Fish'
+        pet.swim();
+    } else {
+        // Here, TypeScript knows 'pet' is of type 'Bird'
+        pet.fly();
+    }
+}
+
+const fish: Fish = { swim: () => console.log('Swimming') };
+const bird: Bird = { fly: () => console.log('Flying') };
+
+getPetAction(fish); // Output: Swimming
+getPetAction(bird); // Output: Flying
+
+// EXAMPLE 2
+type Student = {
+    name: string;
+    study: () => void;
+};
+
+type User = {
+    name: string;
+    login: () => void;
+};
+
+type Person = Student | User;
+
+const randomPerson = (): Person => {
+    return Math.random() > 0.5
+        ? { name: 'john', study: () => console.log('Studying') }
+        : { name: 'mary', login: () => console.log('Logging in') };
+};
+
+const person = randomPerson();
+
+function isStudent(person: Person): person is Student {
+    // return 'study' in person;
+    return (person as Student).study !== undefined;
+}
+
+// Usage
+
+if (isStudent(person)) {
+    person.study(); // This is safe because TypeScript knows that 'person' is a Student.
+} else {
+    person.login();
+}
+
+
+
+// DISCRIMINATED UNIONS AND EXHAUSTIVE CHECK USING THE NEVER TYPE
+// Discriminated unions, also known as tagged unions or algebraic data types, are a pattern in TypeScript that combines union types with literal types and type aliases to create a robust type-checking system.
+// Each type in a discriminated union has a common, literal property (the discriminant) that TypeScript can use to narrow the type.
+
+// Example of Discriminated Union
+interface Square {
+    kind: 'square';
+    size: number;
+}
+
+interface Rectangle {
+    kind: 'rectangle';
+    width: number;
+    height: number;
+}
+
+interface Circle {
+    kind: 'circle';
+    radius: number;
+}
+
+// Union of all shapes
+type Shape = Square | Rectangle | Circle;
+
+function area(shape: Shape): number {
+    switch (shape.kind) {
+        case 'square':
+            return shape.size * shape.size;
+        case 'rectangle':
+            return shape.width * shape.height;
+        case 'circle':
+            return Math.PI * shape.radius * shape.radius;
+        default:
+            // EXHAUSTIVE CHECK USING THE NEVER TYPE
+            // The default case should never be reached if all possible cases are handled.
+            // Using the 'never' type here helps TypeScript enforce that all cases are covered.
+            // If a new shape is added to the 'Shape' type without updating this function, TypeScript will raise a compile-time error.
+            const unexpectedAction: never = shape;
+            throw new Error(`Unexpected action: ${unexpectedAction}`);
+    }
+}
+
+const square: Square = { kind: 'square', size: 2 };
+const rectangle: Rectangle = { kind: 'rectangle', width: 2, height: 3 };
+const circle: Circle = { kind: 'circle', radius: 1 };
+
+console.log(area(square));     // Output: 4
+console.log(area(rectangle));  // Output: 6
+console.log(area(circle));     // Output: 3.141592653589793
