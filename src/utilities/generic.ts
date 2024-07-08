@@ -60,3 +60,23 @@ async function someFunc(): Promise<string> {
 }
 
 console.log("Promises with generic", someFunc());
+
+
+const generateArray = (length: number, value: string): string[] => {
+  let result: string[] = []
+  result = Array(length).fill(value)
+  return result;
+}
+
+console.log(generateArray(3, "Hello World"));
+
+// Creating an array of string using generic
+function generateArrayGeneric<T>(length: number, value: T): Array<T> {
+  let result: T[] = []
+  result = Array(length).fill(value)
+  return result;
+}
+
+console.log(generateArrayGeneric<string>(3, "Hello World"));
+console.log(generateArrayGeneric<number>(3, 300));
+console.log(generateArrayGeneric<boolean>(3, false));
