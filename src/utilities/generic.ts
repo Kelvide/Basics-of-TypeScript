@@ -30,7 +30,7 @@ console.log(array1);
 
 // Instead of the above type function you can set generic function that will accept any type and return any type
 function genericFunction<T>(arg: T): T {
-    return arg;
+  return arg;
 }
 
 const someStringValue = genericFunction<string>('Hello World');
@@ -38,3 +38,25 @@ const someNumberValue = genericFunction<number>(2);
 
 console.log(someStringValue);
 console.log(someNumberValue);
+
+// Using generic for interface
+// Define a generic interface
+interface GenericInterface<T> {
+  value: T;
+  getValue: () => T;
+}
+
+const genericString: GenericInterface<string> = {
+  value: 'Hello World',
+  getValue() {
+    return this.value;
+  },
+};
+
+console.log(genericString)
+
+async function someFunc(): Promise<string> {
+  return "Hello World"
+}
+
+console.log("Promises with generic", someFunc());
