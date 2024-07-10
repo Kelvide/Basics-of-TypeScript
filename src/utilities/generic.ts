@@ -80,3 +80,12 @@ function generateArrayGeneric<T>(length: number, value: T): Array<T> {
 console.log(generateArrayGeneric<string>(3, "Hello World"));
 console.log(generateArrayGeneric<number>(3, 300));
 console.log(generateArrayGeneric<boolean>(3, false));
+
+
+// Set up a function that accept multiple parameters and different data types
+function pair<U, V>(param1: U, param2: V): [U, V] {
+  return [param1, param2]
+}
+
+const result = pair<number, string>(123, 'Hello')
+console.log(result);  // output: [123, 'Hello']
