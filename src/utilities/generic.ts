@@ -89,3 +89,16 @@ function pair<U, V>(param1: U, param2: V): [U, V] {
 
 const result = pair<number, string>(123, 'Hello')
 console.log(result);  // output: [123, 'Hello']
+
+
+// Type constraint on the generic type T, generic type can be either a number or a string.
+// We use extends for type constraint in generic
+function processValue<T extends number | string, U extends string>(value: T, value2: U): [T, U] {
+  console.log(value);
+  console.log(value2);
+  return [value, value2]
+}
+
+processValue('hello', 'World');
+processValue(12, 'Hello');
+// processValue(true);
