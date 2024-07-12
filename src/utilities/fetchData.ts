@@ -23,7 +23,7 @@ type Tour = {
     // Add more fields as necessary.
 };
 
-async function fetchData(url: string) {
+async function fetchData(url: string): Promise<Tour[]> {
     try {
         const response = await fetch(url);
 
@@ -45,7 +45,7 @@ async function fetchData(url: string) {
 fetchData(url)
 
 
-const tours = await fetchData(url);
+const tours: Tour[] = await fetchData(url);
 tours.map((tour) => {
     console.log(tour.name);
 });
