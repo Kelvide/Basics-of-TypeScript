@@ -63,7 +63,7 @@ const tourSchema = z.object({
     info: z.string(),
     image: z.string(),
     price: z.string(),
-    something: z.string()
+    // something: z.string()
 });
 
 // extract the inferred type
